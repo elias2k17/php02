@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    {% if image %}
+        <img src="{{ image.src }}" class="img-fluid" style="max-width: 100%;">
+        <p>{{ image.src }}</p>
+    {% else %}
+        <p>Image not found =(</p>
+    {% endif %}
+
+{% endblock %}
