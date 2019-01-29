@@ -1,0 +1,27 @@
+<html>
+  <head>
+  	<title>{{title}}</title>
+  </head>
+  <body>
+	<h4>{{name}}</h4>
+	<form method="POST" action="/?path=customer/auth" accept-charset="utf-8">
+	<ul>
+		<li id="li_1">
+			<label for="element_1">Login</label>
+			<div>
+				<input id="element_1" name="login" maxlength="50" value="" required/>
+			</div>
+		</li>
+		<li id="li_2">
+			<label for="element_2">Пароль</label>
+			<div>
+				<input id="element_2" name="password" type="password" maxlength="50" value="" required/>
+			</div>
+		</li>
+		<li class="buttons">
+			<input type="submit" name="submit" value="Log In" />
+		</li>
+	</ul>
+	</form>
+  </body>
+</html>
