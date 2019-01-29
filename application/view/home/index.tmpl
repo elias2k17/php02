@@ -1,0 +1,17 @@
+<html>
+  <head></head>
+  <body>
+	<h2>{{title}}</h2>
+	<h4>{{version}}</h4>
+
+	<ul>
+		<li><a href="/?path=product/index">Products</a></li>
+		<li><a href="/?path=customer/index">Customers</a></li>
+		{% if auth_data %}
+			<li><a href="/?path=customer/logout">Logout</a></li>
+		{% else %}
+			<li><a href="/?path=customer/login">Login</a></li>
+		{% endif %}
+	</ul>
+  </body>
+</html>
