@@ -1,0 +1,24 @@
+<html>
+  <head>
+  	<title>{{title}}</title>
+  </head>
+  <body>
+	<h3>{{title}}</h3>
+	{% if auth_data.login %}
+		<div> You're logged as <b>{{auth_data.login}}</b></div>
+	{% endif %}
+	<ul>
+	{% for product in productCollection %}
+		<li>{{product.id}} {{product.name}}</li>
+	{% endfor %}
+	</ul>
+	
+	{% if auth_data.role_id == 1 %}
+	<h3>Add new product</h3>
+	<form method="post" action="/?path=product/new">
+		<input type="text" name="name"/>
+		<input type="submit" value="Add"/>
+	</form>
+	{% endif %}
+  </body>
+</html>

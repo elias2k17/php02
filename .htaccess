@@ -1,0 +1,9 @@
+AddDefaultCharset UTF-8
+DirectoryIndex public/index.php
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} -f [NC,OR]
+RewriteCond %{REQUEST_FILENAME} -d [NC]
+#RewriteRule .* - [L]
+RewriteRule public\/js - [L]
+RewriteCond %{QUERY_STRING} !path= [NC]
+RewriteRule .* public/index.php?path=home/index [L,QSA,NC]

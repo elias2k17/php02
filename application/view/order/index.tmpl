@@ -1,0 +1,34 @@
+<html>
+  <head>
+  	<title>{{title}}</title>
+  </head>
+  <body>
+	<h3>{{title}}</h3>
+
+	{% if auth_data.login %}
+		<div> You're logged as <b>{{auth_data.login}}</b></div>
+	{% endif %}
+
+	<ul>
+	{% for order in orderCollection %}
+		<li>
+		{{order.order_date}} {{order.order_id}} {{order.name}} {{order.price}} {{order.count}} 
+			{% if auth_data.role_id == 1 %}
+				{{order.login}} {{order.email}}
+				<select class="order_status_list" order_id={{order.order_id}}>
+					{% for order_status in order_status_list %}
+					<option value="{{order_status.order_status_id}}" {{(order.order_status_id == order_status.order_status_id) ? "selected" : ""}}>{{order_status.order_status_name}}</option>
+					{% endfor %}
+				</select>
+			{% else %}
+				{{order.order_status_name}}
+			{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+
+
+	<script type="text/javascript" src="//mvc/public/js/jquery-3.3.1.min.js"></script>
+  	<script type="text/javascript" src="//mvc/public/js/async.js"></script>
+  </body>
+</html>
