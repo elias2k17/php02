@@ -3,14 +3,17 @@
   <body>
 	<h2>{{title}}</h2>
 	<h4>{{version}}</h4>
-
+	{% if auth_data.login %}
+		<div> You're logged as <b>{{auth_data.login}}</b></div>
+	{% endif %}
 	<ul>
 		<li><a href="/?path=product/index">Products</a></li>
-		<li><a href="/?path=customer/index">Customers</a></li>
-		{% if auth_data %}
-			<li><a href="/?path=customer/logout">Logout</a></li>
+		<li><a href="/?path=user/index">user Info</a></li>
+		<li><a href="/?path=order/index">Orders list</a></li>
+		{% if auth_data.login %}
+			<li><a href="/?path=user/logout">Logout</a></li>
 		{% else %}
-			<li><a href="/?path=customer/login">Login</a></li>
+			<li><a href="/?path=user/login">Login</a></li>
 		{% endif %}
 	</ul>
   </body>

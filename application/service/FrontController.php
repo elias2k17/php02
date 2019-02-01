@@ -7,18 +7,25 @@ use \application\service\Service;
 class FrontController {
 
 	protected 
+		$session,
 		$view,
 		$config,
 		$request;
 	
 	public function __construct() {
+		$this->session = Service::get("session");
 		$this->view = Service::view();
 		$this->config = Service::config();
 		$this->request = Service::request();
 	}
 
 	protected function before() {
+		return true;
+	}
 
+	protected function redirect($url)
+	{
+		return header('Location: ' . $url);
 	}
 
 	/**
@@ -45,6 +52,10 @@ class FrontController {
 
 		if (!method_exists($controller, "action_".$action)) {
 			return $this->view->render("error500");
+		}
+
+		if (!$controller->before()) {
+			return $this->view->render("error403");
 		}
 
 		return $controller->{"action_".$action}();

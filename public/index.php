@@ -17,6 +17,7 @@ try {
 	/**
 	 * Supporting objects
 	 */
+	$session = new \application\service\Session();
 	$view = new \application\service\View($twig);
 	$config = new \application\service\Config();
 	$request = new \application\service\Request();
@@ -24,6 +25,7 @@ try {
 	/**
 	 * Define singleton
 	 */
+	\application\service\Service::set("session", $session);
 	\application\service\Service::set("view", $view);
 	\application\service\Service::set("config", $config);
 	\application\service\Service::set("request", $request);

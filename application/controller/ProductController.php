@@ -4,18 +4,19 @@ namespace application\controller;
 
 use \application\service\Service;
 use \application\service\FrontController;
-use \application\model\CustomerModel;
+use \application\model\ProductModel;
 
 class ProductController extends FrontController {
 
 	public function action_index() {
 
-		$customer = new CustomerModel();
-		$customerCollection = $customer->getCustomerById(2);
+		$product = new ProductModel();
+		$productCollection = $product->getProducts();
 
 		$this->view->render("product/index", [
-			"title"					=> $this->config->get("title"),
-			"customerCollection"	=> $customerCollection
+			"title"					=> "Product list",
+			"productCollection"	=> $productCollection,
+			"auth_data" => $this->session
 		]);
 	}
 
@@ -28,7 +29,7 @@ class ProductController extends FrontController {
 		return $this->view->render("product/new", [
 			"title"=>$this->config->get("title"),
 			"name"=>$this->request->get("name"), //$_POST["name"]
-		]);		
+		]);
 	}	
 
 }

@@ -13,13 +13,10 @@ class HomeController extends FrontController {
 	}
 
 	public function action_index() {
-		session_start();
-		print_r($_SESSION);
-		print_r(["auth_data"=>$_SESSION["customer_id"]]);
 		return $this->view->render("home/index", [
 			"title"=>$this->config->get("title"),
 			"version"=>$this->config->get("version"),
-			"auth_data"=>$_SESSION["customer_id"]
+			"auth_data"=>$this->session
 		]);
 		
 	}

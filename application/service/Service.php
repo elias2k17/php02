@@ -13,16 +13,6 @@ class Service {
         }
 	}
 	
-    public static function getAuthData()
-    {
-        if(isset(self::$_registry["customer_id"]))
-        {
-            return ["customer_id"=>self::$_registry["customer_id"], 
-                "customer_login"=>self::$_registry["customer_login"],
-                "customer_admin"=>self::$_registry["customer_admin"]
-            ];
-        }
-    }
 
 	public static function set($index, $value)
     {
