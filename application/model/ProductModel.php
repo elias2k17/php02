@@ -24,12 +24,11 @@ class ProductModel extends BaseModel {
 	}
 
 	public function addNewProduct($data) {
-		echo $data["name"];
 		$statement = self::$connection->prepare("INSERT INTO product (name, description, price) VALUE(:name, :description, :price)");
-		$statement->bindValue(':name', $data["name"], \PDO::PARAM_STR);
-		$statement->bindValue(':description', $data["description"], \PDO::PARAM_STR);
-		$statement->bindValue(':price', $data["price"], \PDO::PARAM_STR);
+		$statement->bindValue(':name', $data["product_name"], \PDO::PARAM_STR);
+		$statement->bindValue(':description', $data["product_description"], \PDO::PARAM_STR);
+		$statement->bindValue(':price', $data["product_price"], \PDO::PARAM_STR);
 		$statement->execute();
-		return $statement::lastInsertId ;
+		return $statement->rowCount();
 	}
 }

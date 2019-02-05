@@ -40,8 +40,7 @@ class UserController extends FrontController {
 			return $this->view->render("error500");
 		} else {
 			$user = new UserModel();
-			#$user_data = $user->getUserDataByLoginAndPassword($this->request->getPost["login"], $this->request->getPost["password"]);
-			$user_data = $user->getUserDataByLoginAndPassword($_POST["login"], $_POST["password"]);
+			$user_data = $user->getUserDataByLoginAndPassword($this->request->getPost("login"), $this->request->getPost("password"));
 			if ($user_data) {
 				$this->session->user_id = $user_data["user_id"];
 				$this->session->login = $user_data["login"];

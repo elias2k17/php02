@@ -21,9 +21,8 @@ class ProductController extends FrontController {
 	}
 
 	public function action_new() {
-		#check user rights
-		print_r($this->session);
-		if ($this->session->role_id !== 1)
+		# user should have admin rights (role_id = 1)
+		if ($this->session->role_id != 1)
 		{
 			return $this->view->render("error403");
 		}
@@ -34,18 +33,14 @@ class ProductController extends FrontController {
 
 		$product = new ProductModel();
 		$data = array();
-		$data["name"] = $_POST["name"];
-		$data["description"] = $_POST["description"];
-		$data["price"] = $_POST["price"];
+		$data["product_name"] = $this->request->getPost("product_name");
+		$data["product_description"] = $this->request->getPost("product_description");
+		$data["product_price"] = $this->request->getPost("product_price");
+
 		if ($product->addNewProduct($data)) {
-			return $this->view->render("product/index", [
-				"title"					=> "Product list",
-				"productCollection"	=> $productCollection,
-				"auth_data" => $this->session
-			]);
+			return $this->redirect("/?path=product/index");
 		} else {
-			//return $this->view->render("error500");
-			print_r($data);
+			return $this->view->render("error500");
 		}
 	}
 
@@ -55,8 +50,7 @@ class ProductController extends FrontController {
 		}
 
 		$product = new ProductModel();
-		#$product_info = $product->getProductById($this->request->getData["product_id"]);
-		$productCollection = $product->getProductById($_GET["product_id"]);
+		$productCollection = $product->getProductById($this->request->getData("product_id"));
 		if (!empty($productCollection)) {
 			return $this->view->render("product/view", [
 				"productCollection" => $productCollection,
