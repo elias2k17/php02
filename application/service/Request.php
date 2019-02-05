@@ -23,7 +23,7 @@ class Request {
         foreach($_GET as $key=>$value)
         {
             $this->setGet($key, $value);
-        }               
+        }
 	}
 
     public function set($key, $value)
@@ -59,5 +59,10 @@ class Request {
     public function isPost()
     {
         return !empty(self::$postData);
-    }   	
+    }
+
+    public function isGet()
+    {
+        return !empty(self::$getData);
+    }
 }

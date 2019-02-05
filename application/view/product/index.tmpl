@@ -7,17 +7,33 @@
 	{% if auth_data.login %}
 		<div> You're logged as <b>{{auth_data.login}}</b></div>
 	{% endif %}
+	
 	<ul>
 	{% for product in productCollection %}
-		<li>{{product.id}} {{product.name}}</li>
+		<li><a href="?path=product/view&product_id={{product.id}}">{{product.name}}<img src="{{product.image}}"></a></li>
 	{% endfor %}
 	</ul>
 	
 	{% if auth_data.role_id == 1 %}
+	<br>
+	<hr/>
 	<h3>Add new product</h3>
-	<form method="post" action="/?path=product/new">
-		<input type="text" name="name"/>
-		<input type="submit" value="Add"/>
+	<form method="post" action="/?path=product/new" accept-charset="utf-8">
+		<ul>
+    		<li>
+        		<label for="element_1">Наименование товара</label>
+        		<div><input id="element_1" name="product_name" class="element text medium" type="text" maxlength="255" value="" required autocomplete="on"/></div>
+    		</li>
+    		<li>
+        		<label for="element_2">Короткое описание товара</label><div><textarea id="element_2" name="product_description" class="element textarea small" required autocomplete="on"></textarea></div> 
+    		</li>
+    		<li>
+        		<label for="element_3">Цена</label><div><input id="element_3" name="product_price" class="element text small" type="text" maxlength="255" pattern="^\d+(\.|\,)\d{2}$" value="" required autocomplete="on"/></div>
+    		</li>
+    		<li>
+        		<input id="saveForm" class="button_text" type="submit" name="submit" value="Добавить товар в БД" />
+    		</li>
+		</ul>
 	</form>
 	{% endif %}
   </body>
