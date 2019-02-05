@@ -1,0 +1,25 @@
+<html>
+  <head>
+  	<title>{{title}}</title>
+  </head>
+  <body>
+	<h2>{{title}}</h2>
+
+	{% if auth_data.login %}
+		<div> You're logged as <b>{{auth_data.login}}</b></div>
+	{% endif %}
+
+	<div>Your login: {{auth_data.login}}</div>
+	<div>Your email: {{auth_data.email}}</div>
+	<div>Your role_id: {{auth_data.role_id}}</div>
+	
+	{% if auth_data.role_id == 1 %}
+	<h2>User list:</h2>
+	<ul>
+	{% for user in userCollection %}
+		<li>{{user.id}} {{user.login}} {{user.email}}</li>
+	{% endfor %}
+	</ul>
+	{% endif %}
+  </body>
+</html>

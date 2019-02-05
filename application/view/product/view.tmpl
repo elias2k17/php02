@@ -1,0 +1,24 @@
+<html>
+  <head>
+  	<title>{{productCollection[0].name}}</title>
+  </head>
+  <body>
+	<h3>{{productCollection[0].name}}</h3>
+	{% if auth_data.login %}
+		<div> You're logged as <b>{{auth_data.login}}</b></div>
+	{% endif %}
+
+	{% if productCollection %}
+		<h4>Описание</h4>
+		{{productCollection[0].description}}
+		<h4>Цена</h4>
+		{{productCollection[0].price}}
+		<h4>Фото</h4>
+		<img src="{{productCollection[0].image}}">
+		<br>
+		<button value="{{productCollection[0].id}}">Купить</button>
+	{% endif %}
+	<br>
+	<a href="/?path=product/index">Назад в галерею</a>
+  </body>
+</html>
